@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
+  
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ridex - Rent your favourite car</title>
+  <title>Platino</title>
 
   <!-- 
     - favicon
   -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="./favicon.png" type="image/svg+xml">
 
   <!-- 
     - custom css link
@@ -37,27 +38,27 @@
 
       <div class="overlay" data-overlay></div>
 
-      <a href="#" class="logo">
-        <img src="./assets/images/logo.svg" alt="Ridex logo">
+      <a href="index.html#home" class="logoLetter">
+        <h4>Platino</h4>
       </a>
 
       <nav class="navbar" data-navbar>
         <ul class="navbar-list">
 
           <li>
-            <a href="#home" class="navbar-link" data-nav-link>Home</a>
+            <a href="#home" class="navbar-link" data-nav-link>Inicio</a>
           </li>
 
           <li>
-            <a href="#featured-car" class="navbar-link" data-nav-link>Explore cars</a>
+            <a href="#featured-car" class="navbar-link" data-nav-link>Autos</a>
           </li>
 
           <li>
-            <a href="#" class="navbar-link" data-nav-link>About us</a>
+            <a href="nosotros.html" class="navbar-link" data-nav-link>Nosotros</a>
           </li>
 
           <li>
-            <a href="#blog" class="navbar-link" data-nav-link>Blog</a>
+            <a href="#blog" class="navbar-link" data-nav-link>Lugares</a>
           </li>
 
         </ul>
@@ -66,21 +67,9 @@
       <div class="header-actions">
 
         <div class="header-contact">
-          <a href="tel:88002345678" class="contact-link">8 800 234 56 78</a>
-
-          <span class="contact-time">Mon - Sat: 9:00 am - 6:00 pm</span>
+          <h5 class="tel">Tel: 951 190 4393</h5>
+          <span class="contact-time">Lunes - Domingo: 7:00 am - 9:00 pm</span>
         </div>
-
-        <a href="#featured-car" class="btn" aria-labelledby="aria-label-txt">
-          <ion-icon name="car-outline"></ion-icon>
-
-          <span id="aria-label-txt">Explore cars</span>
-        </a>
-
-        <a href="#" class="btn user-btn" aria-label="Profile">
-          <ion-icon name="person-outline"></ion-icon>
-        </a>
-
         <button class="nav-toggle-btn" data-nav-toggle-btn aria-label="Toggle Menu">
           <span class="one"></span>
           <span class="two"></span>
@@ -92,10 +81,6 @@
     </div>
   </header>
 
-
-
-
-
   <main>
     <article>
 
@@ -105,46 +90,176 @@
 
       <section class="section hero" id="home">
         <div class="container">
-
           <div class="hero-content">
-            <h2 class="h1 hero-title">The easy way to takeover a lease</h2>
-
+            <img src="assets/images/Logo%20Fondo%20Blanco%20Ngro.jpg" alt="logo" class="hero-image">
+            <h1 class="h1 hero-title">Alquila</h1>
+            <h1 class="h1 hero-title">sin preocupaciones</h1>
             <p class="hero-text">
-              Live in New York, New Jerset and Connecticut!
+              La mejor opción para recorrer <b>Oaxaca</b>!
             </p>
           </div>
+          <!--Transicion de las imagenes en banner-->
+          <!--Transicion de las imagenes en banner-->
+          <div class="hero-banner">
+            <img src="assets/images/heroBanner/front1.jpg" alt="Image 1">
+            <img src="assets/images/heroBanner/front2.jpg" alt="Image 2">
+            <img src="assets/images/heroBanner/front3.jpg" alt="Image 3">
+            <img src="assets/images/heroBanner/front4.jpg" alt="Image 4">
+          </div>
 
-          <div class="hero-banner"></div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              var slider = document.querySelector('.hero-banner');
+              var images = slider.querySelectorAll('img');
+              var currentIndex = 0;
+              var interval = 3000;
+              var intervalId;
 
-          <form action="" class="hero-form">
+              // Ajusta el ancho del contenedor
+              slider.style.width = '700px';  // Puedes ajustar según tus necesidades
 
-            <div class="input-wrapper">
-              <label for="input-1" class="input-label">Car, model, or brand</label>
+              // Establece estilos para las imágenes
+              images.forEach(function (img, index) {
+                img.style.width = '100%';  // Cambia el ancho al 100% del contenedor
+                img.style.height = '100%'; // Establece la altura al 100% del contenedor
+                img.style.objectFit = 'cover'; // Ajusta la imagen para cubrir el contenedor sin distorsionar
+                img.style.borderRadius = '30px'; // Aplica el radio de borde
+                img.style.position = 'absolute'; // Establece la posición absoluta
+                img.style.left = '0'; // Todas las imágenes comienzan en la misma posición
+                img.style.transition = 'opacity 0.5s ease-in-out'; // Agrega una transición de opacidad
+              });
 
-              <input type="text" name="car-model" id="input-1" class="input-field"
-                placeholder="What car are you looking?">
+              function changeImage() {
+                // Oculta la imagen actual
+                images[currentIndex].style.opacity = 0;
+
+                // Incrementa el índice actual o reinicia si es la última imagen
+                currentIndex = (currentIndex + 1) % images.length;
+
+                // Muestra la nueva imagen en la misma posición
+                images[currentIndex].style.opacity = 1;
+              }
+
+              // Muestra la primera imagen inmediatamente
+              changeImage();
+
+              // Inicia el intervalo para cambiar las imágenes
+              intervalId = setInterval(changeImage, interval);
+
+              // Detiene el intervalo cuando el usuario sale de la página
+              document.addEventListener("visibilitychange", function () {
+                if (document.visibilityState === "hidden") {
+                  clearInterval(intervalId);
+                } else {
+                  // Reanuda el intervalo cuando la página es visible nuevamente
+                  intervalId = setInterval(changeImage, interval);
+                }
+              });
+            });
+          </script>
+
+
+
+          <!--fin transicion-->
+          <form action="formulario.html" class="hero-form" onsubmit="return false;">
+            <div class="input-wrapper">   
+              <label for="auto-select" class="input-label">Modelo</label>
+              <select id="auto-select" class="input-field" onchange="calcularTotal()">
+                <option value="" disabled selected>Elije el auto</option>
+                <option value="auto-chico" data-precio="1000">Nissan March</option>
+                <option value="auto-mediano" data-precio="1200">Chevrolet Aveo</option>
+                <option value="camioneta" data-precio="2500">Nissan Frontier</option>
+                <option value="pick-up" data-precio="1700">Volkswagen T-Cross</option>
+                <option value="pick-up" data-precio="2000">Toyota Avanza</option>
+                <option value="pick-up" data-precio="3000">Toyota Hiace</option>
+              </select>              
             </div>
-
+          
             <div class="input-wrapper">
-              <label for="input-2" class="input-label">Max. monthly payment</label>
-
-              <input type="text" name="monthly-pay" id="input-2" class="input-field" placeholder="Add an amount in $">
+              <label for="input-2" class="input-label">Días (Hasta 30)</label>
+              <input type="number" name="monthly-pay" id="input-2" class="input-field"
+                placeholder="Ej: 5" inputmode="numeric" min="1" max="30" oninput="this.value = this.value.replace(/[^0-9]/g, ''); calcularTotal()">
             </div>
-
+          
             <div class="input-wrapper">
-              <label for="input-3" class="input-label">Make Year</label>
-
-              <input type="text" name="year" id="input-3" class="input-field" placeholder="Add a minimal make year">
-            </div>
-
-            <button type="submit" class="btn">Search</button>
-
+              <label for="input-3" class="input-label">Total Aproximado</label>
+              <input type="text" id="input-3" class="input-field" placeholder="" readonly>
+            </div>    
+            <button type="submit" class="btn" onclick="window.location.href='formulario.html'">Reservar</button>
           </form>
+          
+          <script>
+            function calcularTotal() {
+              // Lógica para calcular el total
+              var selectedAuto = document.getElementById('auto-select');
+              var selectedDays = document.getElementById('input-2').value;
+              var totalPrice = 0;
+          
+              if (selectedAuto && selectedAuto.options[selectedAuto.selectedIndex]) {
+                var precioAuto = parseInt(selectedAuto.options[selectedAuto.selectedIndex].getAttribute('data-precio'), 10);
+                totalPrice = precioAuto * selectedDays;
+              }
+          
+              document.getElementById('input-3').value = totalPrice;
+            }
+          </script>
+          
+            
+<script>
+  function calcularTotal() {
+    // Obtener elementos del DOM
+    var autoSelect = document.getElementById("auto-select");
+    var diasInput = document.getElementById("input-2");
+    var totalInput = document.getElementById("input-3");
+
+    // Verificar si se ha seleccionado un modelo de auto y se han ingresado los días
+    if (autoSelect.value && diasInput.value) {
+      // Obtener valores seleccionados
+      var precioAuto = parseFloat(autoSelect.options[autoSelect.selectedIndex].getAttribute("data-precio"));
+      var dias = parseInt(diasInput.value);
+
+      // Validar días
+      if (isNaN(dias) || dias < 1 || dias > 30) {    
+        diasInput.value = "";
+        totalInput.value = "";
+        return;
+      }
+
+      // Calcular el total
+      var total = precioAuto * dias;
+
+      // Mostrar el resultado en el campo "Total Aproximado"
+      totalInput.value = total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+    } else {
+      // Si no se han seleccionado ambos valores, limpiar el campo de total
+      totalInput.value = "";
+    }
+  }
+</script>
+          </form>
+          
+          <br>        
+          <p class="hero-text">
+          Sujeto a disponibilidad <br>
+           Consulta Términos y Condiciones
+            </ps>
 
         </div>
       </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  flatpickr("#input-3", {
+    dateFormat: 'd-m-Y', // Formato de fecha
+    mode: 'range', // Permite seleccionar un rango de fechas
+    onClose: function(selectedDates, dateStr, instance) {
+      // Puedes agregar lógica adicional aquí si es necesario
+    }
+  });
+});
 
+
+</script>
 
 
 
@@ -156,13 +271,7 @@
         <div class="container">
 
           <div class="title-wrapper">
-            <h2 class="h2 section-title">Featured cars</h2>
-
-            <a href="#" class="featured-car-link">
-              <span>View more</span>
-
-              <ion-icon name="arrow-forward-outline"></ion-icon>
-            </a>
+            <h2 class="h2 section-title"><br>Catálogo</h2>
           </div>
 
           <ul class="featured-car-list">
@@ -171,137 +280,7 @@
               <div class="featured-car-card">
 
                 <figure class="card-banner">
-                  <img src="./assets/images/car-1.jpg" alt="Toyota RAV4 2021" loading="lazy" width="440" height="300"
-                    class="w-100">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-title-wrapper">
-                    <h3 class="h3 card-title">
-                      <a href="#">Toyota RAV4</a>
-                    </h3>
-
-                    <data class="year" value="2021">2021</data>
-                  </div>
-
-                  <ul class="card-list">
-
-                    <li class="card-list-item">
-                      <ion-icon name="people-outline"></ion-icon>
-
-                      <span class="card-item-text">4 People</span>
-                    </li>
-
-                    <li class="card-list-item">
-                      <ion-icon name="flash-outline"></ion-icon>
-
-                      <span class="card-item-text">Hybrid</span>
-                    </li>
-
-                    <li class="card-list-item">
-                      <ion-icon name="speedometer-outline"></ion-icon>
-
-                      <span class="card-item-text">6.1km / 1-litre</span>
-                    </li>
-
-                    <li class="card-list-item">
-                      <ion-icon name="hardware-chip-outline"></ion-icon>
-
-                      <span class="card-item-text">Automatic</span>
-                    </li>
-
-                  </ul>
-
-                  <div class="card-price-wrapper">
-
-                    <p class="card-price">
-                      <strong>$440</strong> / month
-                    </p>
-
-                    <button class="btn fav-btn" aria-label="Add to favourite list">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="btn">Rent now</button>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="featured-car-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/car-2.jpg" alt="BMW 3 Series 2019" loading="lazy" width="440" height="300"
-                    class="w-100">
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-title-wrapper">
-                    <h3 class="h3 card-title">
-                      <a href="#">BMW 3 Series</a>
-                    </h3>
-
-                    <data class="year" value="2019">2019</data>
-                  </div>
-
-                  <ul class="card-list">
-
-                    <li class="card-list-item">
-                      <ion-icon name="people-outline"></ion-icon>
-
-                      <span class="card-item-text">4 People</span>
-                    </li>
-
-                    <li class="card-list-item">
-                      <ion-icon name="flash-outline"></ion-icon>
-
-                      <span class="card-item-text">Gasoline</span>
-                    </li>
-
-                    <li class="card-list-item">
-                      <ion-icon name="speedometer-outline"></ion-icon>
-
-                      <span class="card-item-text">8.2km / 1-litre</span>
-                    </li>
-
-                    <li class="card-list-item">
-                      <ion-icon name="hardware-chip-outline"></ion-icon>
-
-                      <span class="card-item-text">Automatic</span>
-                    </li>
-
-                  </ul>
-
-                  <div class="card-price-wrapper">
-
-                    <p class="card-price">
-                      <strong>$350</strong> / month
-                    </p>
-
-                    <button class="btn fav-btn" aria-label="Add to favourite list">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="btn">Rent now</button>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="featured-car-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/car-3.jpg" alt="Volkswagen T-Cross 2020" loading="lazy" width="440"
+                  <img src="./assets/images/catalogoAutos/nissanMarch.jpg" alt="Nissan March" loading="lazy" width="440"
                     height="300" class="w-100">
                 </figure>
 
@@ -309,10 +288,10 @@
 
                   <div class="card-title-wrapper">
                     <h3 class="h3 card-title">
-                      <a href="#">Volkswagen T-Cross</a>
+                      Nissan March
                     </h3>
 
-                    <data class="year" value="2020">2020</data>
+                    <data class="year" value="2024">2024</data>
                   </div>
 
                   <ul class="card-list">
@@ -320,25 +299,25 @@
                     <li class="card-list-item">
                       <ion-icon name="people-outline"></ion-icon>
 
-                      <span class="card-item-text">4 People</span>
+                      <span class="card-item-text">4 Personas</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="flash-outline"></ion-icon>
 
-                      <span class="card-item-text">Gasoline</span>
+                      <span class="card-item-text">Gasolina</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="speedometer-outline"></ion-icon>
 
-                      <span class="card-item-text">5.3km / 1-litre</span>
+                      <span class="card-item-text">Auto Chico</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="hardware-chip-outline"></ion-icon>
 
-                      <span class="card-item-text">Automatic</span>
+                      <span class="card-item-text">Estándar</span>
                     </li>
 
                   </ul>
@@ -346,14 +325,10 @@
                   <div class="card-price-wrapper">
 
                     <p class="card-price">
-                      <strong>$400</strong> / month
-                    </p>
+                      <strong>$1000 MXN</strong> / por Día
+                    </p>                    
+                    <a href="formulario.html" class="btn">Alquilar</a>
 
-                    <button class="btn fav-btn" aria-label="Add to favourite list">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="btn">Rent now</button>
 
                   </div>
 
@@ -366,7 +341,7 @@
               <div class="featured-car-card">
 
                 <figure class="card-banner">
-                  <img src="./assets/images/car-4.jpg" alt="Cadillac Escalade 2020" loading="lazy" width="440"
+                  <img src="./assets/images/catalogoAutos/grand-i10-1.jpg" alt="Grand i10" loading="lazy" width="440"
                     height="300" class="w-100">
                 </figure>
 
@@ -374,10 +349,10 @@
 
                   <div class="card-title-wrapper">
                     <h3 class="h3 card-title">
-                      <a href="#">Cadillac Escalade</a>
+                      Hyundai Grand i10
                     </h3>
 
-                    <data class="year" value="2020">2020</data>
+                    <data class="year" value="2024">2024</data>
                   </div>
 
                   <ul class="card-list">
@@ -385,25 +360,25 @@
                     <li class="card-list-item">
                       <ion-icon name="people-outline"></ion-icon>
 
-                      <span class="card-item-text">4 People</span>
+                      <span class="card-item-text">4 Personas</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="flash-outline"></ion-icon>
 
-                      <span class="card-item-text">Gasoline</span>
+                      <span class="card-item-text">Gasolina</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="speedometer-outline"></ion-icon>
 
-                      <span class="card-item-text">7.7km / 1-litre</span>
+                      <span class="card-item-text">Auto Chico</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="hardware-chip-outline"></ion-icon>
 
-                      <span class="card-item-text">Automatic</span>
+                      <span class="card-item-text">Automatico</span>
                     </li>
 
                   </ul>
@@ -411,14 +386,9 @@
                   <div class="card-price-wrapper">
 
                     <p class="card-price">
-                      <strong>$620</strong> / month
+                      <strong>$1200 MXN</strong> / por día
                     </p>
-
-                    <button class="btn fav-btn" aria-label="Add to favourite list">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="btn">Rent now</button>
+                    <a href="formulario.html" class="btn">Alquilar</a>
 
                   </div>
 
@@ -431,7 +401,7 @@
               <div class="featured-car-card">
 
                 <figure class="card-banner">
-                  <img src="./assets/images/car-5.jpg" alt="BMW 4 Series GTI 2021" loading="lazy" width="440"
+                  <img src="./assets/images/catalogoAutos/AveoManual.png" alt="AveoManual" loading="lazy" width="440"
                     height="300" class="w-100">
                 </figure>
 
@@ -439,10 +409,10 @@
 
                   <div class="card-title-wrapper">
                     <h3 class="h3 card-title">
-                      <a href="#">BMW 4 Series GTI</a>
+                      Chevrolet Aveo
                     </h3>
 
-                    <data class="year" value="2021">2021</data>
+                    <data class="year" value="2024">2024</data>
                   </div>
 
                   <ul class="card-list">
@@ -450,25 +420,25 @@
                     <li class="card-list-item">
                       <ion-icon name="people-outline"></ion-icon>
 
-                      <span class="card-item-text">4 People</span>
+                      <span class="card-item-text">4 Personas</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="flash-outline"></ion-icon>
 
-                      <span class="card-item-text">Gasoline</span>
+                      <span class="card-item-text">Gasolina</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="speedometer-outline"></ion-icon>
 
-                      <span class="card-item-text">7.6km / 1-litre</span>
+                      <span class="card-item-text">Auto Mediano</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="hardware-chip-outline"></ion-icon>
 
-                      <span class="card-item-text">Automatic</span>
+                      <span class="card-item-text">Estándar</span>
                     </li>
 
                   </ul>
@@ -476,14 +446,9 @@
                   <div class="card-price-wrapper">
 
                     <p class="card-price">
-                      <strong>$530</strong> / month
+                      <strong>$1200 MXN</strong> / por día
                     </p>
-
-                    <button class="btn fav-btn" aria-label="Add to favourite list">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="btn">Rent now</button>
+                    <a href="formulario.html" class="btn">Alquilar</a>
 
                   </div>
 
@@ -496,18 +461,18 @@
               <div class="featured-car-card">
 
                 <figure class="card-banner">
-                  <img src="./assets/images/car-6.jpg" alt="BMW 4 Series 2019" loading="lazy" width="440" height="300"
-                    class="w-100">
+                  <img src="./assets/images/catalogoAutos/AveoAutomatico.jpg" alt="AveoAutomatico" loading="lazy"
+                    width="440" height="300" class="w-100">
                 </figure>
 
                 <div class="card-content">
 
                   <div class="card-title-wrapper">
                     <h3 class="h3 card-title">
-                      <a href="#">BMW 4 Series</a>
+                      Chevrolet Aveo
                     </h3>
 
-                    <data class="year" value="2019">2019</data>
+                    <data class="year" value="2024">2024</data>
                   </div>
 
                   <ul class="card-list">
@@ -515,25 +480,25 @@
                     <li class="card-list-item">
                       <ion-icon name="people-outline"></ion-icon>
 
-                      <span class="card-item-text">4 People</span>
+                      <span class="card-item-text">4 Personas</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="flash-outline"></ion-icon>
 
-                      <span class="card-item-text">Gasoline</span>
+                      <span class="card-item-text">Gasolina</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="speedometer-outline"></ion-icon>
 
-                      <span class="card-item-text">7.2km / 1-litre</span>
+                      <span class="card-item-text">Auto Mediano</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="hardware-chip-outline"></ion-icon>
 
-                      <span class="card-item-text">Automatic</span>
+                      <span class="card-item-text">Automático</span>
                     </li>
 
                   </ul>
@@ -541,14 +506,248 @@
                   <div class="card-price-wrapper">
 
                     <p class="card-price">
-                      <strong>$490</strong> / month
+                      <strong>$1400 MXN</strong> / por día
+                    </p>
+                    <a href="formulario.html" class="btn">Alquilar</a>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </li>
+            <li>
+              <div class="featured-car-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/catalogoAutos/vw-t-cross.jpg" alt="peugeot" loading="lazy" width="440"
+                    height="300" class="w-100">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-title-wrapper">
+                    <h3 class="h3 card-title">
+                      Volkswagen T-Cross
+                    </h3>
+
+                    <data class="year" value="2024">2024</data>
+                  </div>
+
+                  <ul class="card-list">
+
+                    <li class="card-list-item">
+                      <ion-icon name="people-outline"></ion-icon>
+
+                      <span class="card-item-text">5 Personas</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="flash-outline"></ion-icon>
+
+                      <span class="card-item-text">Gasolina</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="speedometer-outline"></ion-icon>
+
+                      <span class="card-item-text">Camioneta</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="hardware-chip-outline"></ion-icon>
+
+                      <span class="card-item-text">Automático</span>
+                    </li>
+
+                  </ul>
+
+                  <div class="card-price-wrapper">
+
+                    <p class="card-price">
+                      <strong>$1700 MXN</strong> / por día
+                    </p>
+                    <a href="formulario.html" class="btn">Alquilar</a>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="featured-car-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/catalogoAutos/ToyotaAvanza.jpg" alt="peugeot" loading="lazy" width="440"
+                    height="300" class="w-100">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-title-wrapper">
+                    <h3 class="h3 card-title">
+                      Toyota Avanza
+                    </h3>
+
+                    <data class="year" value="2024">2024</data>
+                  </div>
+
+                  <ul class="card-list">
+
+                    <li class="card-list-item">
+                      <ion-icon name="people-outline"></ion-icon>
+
+                      <span class="card-item-text">7 Personas</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="flash-outline"></ion-icon>
+
+                      <span class="card-item-text">Gasolina</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="speedometer-outline"></ion-icon>
+
+                      <span class="card-item-text">Camioneta</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="hardware-chip-outline"></ion-icon>
+
+                      <span class="card-item-text">Automático</span>
+                    </li>
+
+                  </ul>
+
+                  <div class="card-price-wrapper">
+
+                    <p class="card-price">
+                      <strong>$2000 MXN</strong> / por día
                     </p>
 
-                    <button class="btn fav-btn" aria-label="Add to favourite list">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
+                    <a href="formulario.html" class="btn">Alquilar</a>
 
-                    <button class="btn">Rent now</button>
+                  </div>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="featured-car-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/catalogoAutos/ToyotaHiace.jpg" alt="ToyotaHiace" loading="lazy" width="440"
+                    height="300" class="w-100">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-title-wrapper">
+                    <h3 class="h3 card-title">
+                      Toyota Hiace
+                    </h3>
+
+                    <data class="year" value="2024">2024</data>
+                  </div>
+
+                  <ul class="card-list">
+
+                    <li class="card-list-item">
+                      <ion-icon name="people-outline"></ion-icon>
+
+                      <span class="card-item-text">12 Personas</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="flash-outline"></ion-icon>
+
+                      <span class="card-item-text">Gasolina</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="speedometer-outline"></ion-icon>
+
+                      <span class="card-item-text">Camioneta</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="hardware-chip-outline"></ion-icon>
+
+                      <span class="card-item-text">Estándar</span>
+                    </li>
+
+                  </ul>
+
+                  <div class="card-price-wrapper">
+
+                    <p class="card-price">
+                      <strong>$3000 MXN</strong> / por día
+                    </p>
+                    <a href="formulario.html" class="btn">Alquilar</a>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </li>
+            <li>
+              <div class="featured-car-card">
+
+                <figure class="card-banner">
+                  <img src="./assets/images/catalogoAutos/nissanDoble.jpg" alt="Nissan Frontier" loading="lazy"
+                    width="440" height="300" class="w-100">
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-title-wrapper">
+                    <h3 class="h3 card-title">
+                      Nissan Frontier
+                    </h3>
+
+                    <data class="year" value="2024">2024</data>
+                  </div>
+
+                  <ul class="card-list">
+
+                    <li class="card-list-item">
+                      <ion-icon name="people-outline"></ion-icon>
+
+                      <span class="card-item-text">Pick UP</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="flash-outline"></ion-icon>
+
+                      <span class="card-item-text">Gasolina</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="speedometer-outline"></ion-icon>
+
+                      <span class="card-item-text">Doble Cabina</span>
+                    </li>
+
+                    <li class="card-list-item">
+                      <ion-icon name="hardware-chip-outline"></ion-icon>
+
+                      <span class="card-item-text">Estándar</span>
+                    </li>
+
+                  </ul>
+
+                  <div class="card-price-wrapper">
+
+                    <p class="card-price">
+                      <strong>$2500 MXN</strong> / por día
+                    </p>
+                    <a href="formulario.html" class="btn">Alquilar</a>
 
                   </div>
 
@@ -573,7 +772,7 @@
       <section class="section get-start">
         <div class="container">
 
-          <h2 class="h2 section-title">Get started with 4 simple steps</h2>
+          <h2 class="h2 section-title">Comienza con 4 simples pasos</h2>
 
           <ul class="get-start-list">
 
@@ -584,13 +783,12 @@
                   <ion-icon name="person-add-outline"></ion-icon>
                 </div>
 
-                <h3 class="card-title">Create a profile</h3>
+                <h3 class="card-title">Elije un auto...</h3>
 
                 <p class="card-text">
-                  If you are going to use a passage of Lorem Ipsum, you need to be sure.
+                  Elije un auto de nuestro catálogo y selecciona alquilar
                 </p>
-
-                <a href="#" class="card-link">Get started</a>
+                <br>
 
               </div>
             </li>
@@ -602,10 +800,10 @@
                   <ion-icon name="car-outline"></ion-icon>
                 </div>
 
-                <h3 class="card-title">Tell us what car you want</h3>
+                <h3 class="card-title">Llena el formulario</h3>
 
                 <p class="card-text">
-                  Various versions have evolved over the years, sometimes by accident, sometimes on purpose
+                  LLena el formulario con tus datos y elige el tiempo de renta
                 </p>
 
               </div>
@@ -618,11 +816,10 @@
                   <ion-icon name="person-outline"></ion-icon>
                 </div>
 
-                <h3 class="card-title">Match with seller</h3>
+                <h3 class="card-title">Resérvalo</h3>
 
                 <p class="card-text">
-                  It to make a type specimen book. It has survived not only five centuries, but also the leap into
-                  electronic
+                  Haz tu reservación y recibe un correo con los detalles de tu renta
                 </p>
 
               </div>
@@ -635,10 +832,10 @@
                   <ion-icon name="card-outline"></ion-icon>
                 </div>
 
-                <h3 class="card-title">Make a deal</h3>
+                <h3 class="card-title">Pago</h3>
 
                 <p class="card-text">
-                  There are many variations of passages of Lorem available, but the majority have suffered alteration
+                  Nuestro equipo se pondrá en contacto contigo para confirmar tu reservación la entrega del auto y el pago
                 </p>
 
               </div>
@@ -649,10 +846,6 @@
         </div>
       </section>
 
-
-
-
-
       <!-- 
         - #BLOG
       -->
@@ -660,392 +853,232 @@
       <section class="section blog" id="blog">
         <div class="container">
 
-          <h2 class="h2 section-title">Our Blog</h2>
+          <h2 class="h2 section-title">Lugares y Recomendaciones</h2>
 
           <ul class="blog-list has-scrollbar">
-
             <li>
               <div class="blog-card">
 
                 <figure class="card-banner">
 
-                  <a href="#">
-                    <img src="./assets/images/blog-1.jpg" alt="Opening of new offices of the company" loading="lazy"
-                      class="w-100">
+                  <a href="huatulco.html">
+                    <img src="./assets/images/lugares/Huatulco.jpg" alt="Huatulco" loading="lazy" class="w-100">
                   </a>
-
-                  <a href="#" class="btn card-badge">Company</a>
-
                 </figure>
-
                 <div class="card-content">
-
                   <h3 class="h3 card-title">
-                    <a href="#">Opening of new offices of the company</a>
+                    <a href="huatulco.html">Huatulco</a>
                   </h3>
-
-                  <div class="card-meta">
-
-                    <div class="publish-date">
-                      <ion-icon name="time-outline"></ion-icon>
-
-                      <time datetime="2022-01-14">January 14, 2022</time>
-                    </div>
-
-                    <div class="comments">
-                      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-
-                      <data value="114">114</data>
-                    </div>
-
-                  </div>
-
                 </div>
-
-              </div>
             </li>
-
             <li>
               <div class="blog-card">
 
                 <figure class="card-banner">
 
-                  <a href="#">
-                    <img src="./assets/images/blog-2.jpg" alt="What cars are most vulnerable" loading="lazy"
-                      class="w-100">
+                  <a href="puertoEscondido.html">
+                    <img src="./assets/images/lugares/PuertoEscondido.jpg" alt="What cars are most vulnerable"
+                      loading="lazy" class="w-100">
                   </a>
-
-                  <a href="#" class="btn card-badge">Repair</a>
-
                 </figure>
-
                 <div class="card-content">
-
                   <h3 class="h3 card-title">
-                    <a href="#">What cars are most vulnerable</a>
+                    <a href="puertoEscondido.html">Puerto Escondido</a>
                   </h3>
-
                   <div class="card-meta">
-
-                    <div class="publish-date">
-                      <ion-icon name="time-outline"></ion-icon>
-
-                      <time datetime="2022-01-14">January 14, 2022</time>
-                    </div>
-
-                    <div class="comments">
-                      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-
-                      <data value="114">114</data>
-                    </div>
-
                   </div>
-
                 </div>
-
               </div>
             </li>
-
             <li>
               <div class="blog-card">
-
                 <figure class="card-banner">
-
-                  <a href="#">
-                    <img src="./assets/images/blog-3.jpg" alt="Statistics showed which average age" loading="lazy"
-                      class="w-100">
+                  <a href="hierveElAgua.html">
+                    <img src="./assets/images/lugares/hierve-el-agua-oaxaca.jpg" alt="What´s required when renting a car?"
+                      loading="lazy" class="w-100">
                   </a>
-
-                  <a href="#" class="btn card-badge">Cars</a>
-
                 </figure>
-
                 <div class="card-content">
-
                   <h3 class="h3 card-title">
-                    <a href="#">Statistics showed which average age</a>
+                    <a href="hierveElAgua.html">Hierve el Agua</a>
                   </h3>
-
                   <div class="card-meta">
-
-                    <div class="publish-date">
-                      <ion-icon name="time-outline"></ion-icon>
-
-                      <time datetime="2022-01-14">January 14, 2022</time>
-                    </div>
-
-                    <div class="comments">
-                      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-
-                      <data value="114">114</data>
-                    </div>
-
                   </div>
-
                 </div>
-
               </div>
             </li>
-
             <li>
               <div class="blog-card">
-
                 <figure class="card-banner">
-
-                  <a href="#">
-                    <img src="./assets/images/blog-4.jpg" alt="What´s required when renting a car?" loading="lazy"
-                      class="w-100">
-                  </a>
-
-                  <a href="#" class="btn card-badge">Cars</a>
-
+                  <a href="sanMartinTilcajete.html">
+                    <img src="./assets/images/lugares/San-Martin-Tilcajete.jpg" alt="Statistics showed which average age"
+                      loading="lazy" class="w-100">
                 </figure>
-
                 <div class="card-content">
-
                   <h3 class="h3 card-title">
-                    <a href="#">What´s required when renting a car?</a>
+                    <a href="sanMartinTilcajete.html">San Martín Tilcajete</a>
                   </h3>
-
                   <div class="card-meta">
-
-                    <div class="publish-date">
-                      <ion-icon name="time-outline"></ion-icon>
-
-                      <time datetime="2022-01-14">January 14, 2022</time>
-                    </div>
-
-                    <div class="comments">
-                      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-
-                      <data value="114">114</data>
-                    </div>
-
                   </div>
-
                 </div>
-
               </div>
             </li>
-
             <li>
               <div class="blog-card">
-
                 <figure class="card-banner">
-
-                  <a href="#">
-                    <img src="./assets/images/blog-5.jpg" alt="New rules for handling our cars" loading="lazy"
-                      class="w-100">
+                  <a href="mitla.html">
+                    <img src="./assets/images/lugares/Mitla.jpg" alt="What´s required when renting a car?"
+                      loading="lazy" class="w-100">
                   </a>
-
-                  <a href="#" class="btn card-badge">Company</a>
-
                 </figure>
-
                 <div class="card-content">
-
                   <h3 class="h3 card-title">
-                    <a href="#">New rules for handling our cars</a>
+                    <a href="mitla.html">Zona Arqueológica Mitla</a>
                   </h3>
-
                   <div class="card-meta">
-
-                    <div class="publish-date">
-                      <ion-icon name="time-outline"></ion-icon>
-
-                      <time datetime="2022-01-14">January 14, 2022</time>
-                    </div>
-
-                    <div class="comments">
-                      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-
-                      <data value="114">114</data>
-                    </div>
-
                   </div>
-
                 </div>
-
+              </div>
+            </li> 
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="sBartoloCoyotepec.html">
+                    <img src="./assets/images/lugares/San-Bartolo-Coyotepec.jpg" alt="What´s required when renting a car?"
+                      loading="lazy" class="w-100">
+                  </a>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="sBartoloCoyotepec.html">San Bartolo Coyotepec</a>
+                  </h3>
+                  <div class="card-meta">
+                  </div>
+                </div>
+              </div>
+            </li>            
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner">
+                  <a href="santiagoMatatlan.html">
+                    <img src="./assets/images/lugares/matatlan.jpg" alt="What´s required when renting a car?"
+                      loading="lazy" class="w-100">
+                  </a>
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">
+                    <a href="santiagoMatatlan.html">Santiago Matatlán</a>
+                  </h3>
+                  <div class="card-meta">
+                  </div>
+                </div>
               </div>
             </li>
-
           </ul>
-
         </div>
       </section>
 
     </article>
   </main>
-
-
-
-
-
   <!-- 
     - #FOOTER
   -->
-
   <footer class="footer">
     <div class="container">
 
       <div class="footer-top">
 
         <div class="footer-brand">
-          <a href="#" class="logo">
-            <img src="./assets/images/logo.svg" alt="Ridex logo">
+          <a href="#" class="logoLetter">
+            <h4>Platino Oaxaca</h4>
           </a>
 
           <p class="footer-text">
-            Search for cheap rental cars in New York. With a diverse fleet of 19,000 vehicles, Waydex offers its
-            consumers an
-            attractive and fun selection.
+            Dedicados al alquiler de autos, con más de 10 años de experiencia
           </p>
         </div>
 
         <ul class="footer-list">
-
           <li>
-            <p class="footer-list-title">Company</p>
+            <div class="boton-modal2"><label for="boton-modal2">Nosotros</label></div><br>
           </li>
-
+          <!-- Nosotros -->
+          <input type="checkbox" id="boton-modal2">
+          <div class="container-modal2">
+            <div class="content-modal2">
+              <h2>Platino Oaxaca</h2>
+              <p>Nos centramos en satisfacer las necesidades de movilidad de nuestros clientes con servicios de alta
+                calidad, comodidad y seguridad. Nuestro compromiso profesional garantiza una experiencia de conducción
+                confiable y satisfactoria en cada viaje.<br> <br>
+                <b>Ven y conoce Oaxaca con nosotros!</b>
+              </p>
+              <div class="btn-cerrar2">
+                <label for="boton-modal2">Cerrar</label>
+              </div>
+            </div>
+            <label for="boton-modal2" class="cerrar-modal2"></label>
+          </div>
+          <!-- Nosotros -->
           <li>
-            <a href="#" class="footer-link">About us</a>
+            <a href="terminos.html" class="footer-link">Términos y Condiciones</a><br>
           </li>
-
           <li>
-            <a href="#" class="footer-link">Pricing plans</a>
+            <div class="boton-modal"><label for="boton-modal">Preguntas Frecuentes</label></div>
           </li>
+          <!-- Preguntas Frecuentes -->
 
-          <li>
-            <a href="#" class="footer-link">Our blog</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Contacts</a>
-          </li>
-
+          <input type="checkbox" id="boton-modal">
+          <div class="container-modal">
+            <div class="content-modal">
+              <h2>Preguntas Frecuentes</h2>
+              <p><b>¿Cuáles son los requisitos?</b><br>
+                Identificación Oficial (INE)<br>
+                Licencia para conducir<br>
+                Tarjeta de crédito<br><br>
+                <b>¿Puedo dejar el auto en otra ciudad?</b><br>
+                Siempre que lo indique anticipadamente <br><br>
+                <b>¿Incluye IVA?</b><br>
+                Si<br><br>
+                <b>¿Ofrecen renta con chofer?</b><br>
+                Sí, tiene costo adicional <br><br>
+                <b>¿Aceptan todas las tarjetas?</b><br>
+                Sí, se aceptan todas las tarjetas bancarias.
+              </p>
+              <div class="btn-cerrar">
+                <label for="boton-modal">Cerrar</label>
+              </div>
+            </div>
+            <label for="boton-modal" class="cerrar-modal"></label>
+          </div>
+          <!-- Fin Preguntas Frecuentes -->
         </ul>
-
         <ul class="footer-list">
-
           <li>
-            <p class="footer-list-title">Support</p>
+            <a href="https://maps.app.goo.gl/cWcttZCpGDREiDnd9" class="footer-link" target="_blank">Ubicación (Mapa)</a>
           </li>
-
-          <li>
-            <a href="#" class="footer-link">Help center</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Ask a question</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Privacy policy</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Terms & conditions</a>
-          </li>
-
         </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Neighborhoods in New York</p>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Manhattan</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Central New York City</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Upper East Side</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Queens</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Theater District</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Midtown</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">SoHo</a>
-          </li>
-
-          <li>
-            <a href="#" class="footer-link">Chelsea</a>
-          </li>
-
-        </ul>
-
       </div>
-
       <div class="footer-bottom">
-
         <ul class="social-list">
-
           <li>
-            <a href="#" class="social-link">
+            <a href="https://www.facebook.com/platinooaxaca016/?paipv=0&eav=AfZG0ZRfCRHwzVnpcdgDLihtxqm9LR4tF5DE2QRFTRJJpp-LUcCLDjRC9kh6_iX0ksw&_rdr"
+              class="social-link" target="_blank">
               <ion-icon name="logo-facebook"></ion-icon>
             </a>
           </li>
-
           <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
+            <h5>platino.oaxaca@gmail.com</h5>
           </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-skype"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="mail-outline"></ion-icon>
-            </a>
-          </li>
-
         </ul>
 
         <p class="copyright">
-          &copy; 2022 <a href="#">codewithsadee</a>. All Rights Reserved
+          &copy; 2024 Platino Oaxaca
         </p>
 
       </div>
 
     </div>
   </footer>
-
-
-
-
 
   <!-- 
     - custom js link

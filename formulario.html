@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+
+    <!-- 
+    - favicon
+  -->
+    <link rel="shortcut icon" href="./favicon.png" type="image/svg+xml">
+
+    <!-- 
+    - custom css link
+  -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- 
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- 
+    - #HEADER
+  -->
+
+    <header class="header" data-header>
+        <div class="container">
+
+            <div class="overlay" data-overlay></div>
+
+            <a href="index.html#home" class="logoLetter">
+                <h4>Platino</h4>
+            </a>
+
+            <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+
+                    <li>
+                        <a href="index.html#home" class="navbar-link" data-nav-link>Inicio</a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#featured-car" class="navbar-link" data-nav-link>Autos</a>
+                    </li>
+
+                    <li>
+                        <a href="nosotros.html" class="navbar-link" data-nav-link>Nosotros </a>
+                    </li>
+
+                    <li>
+                        <a href="#blog" class="navbar-link" data-nav-link>Lugares</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+
+                <div class="header-contact">
+                    <h5 class="tel">Tel: 951 190 4393</h5>
+                    <span class="contact-time">Lunes - Domingo: 7:00 am - 9:00 pm</span>
+                </div>
+                <button class="nav-toggle-btn" data-nav-toggle-btn aria-label="Toggle Menu">
+                    <span class="one"></span>
+                    <span class="two"></span>
+                    <span class="three"></span>
+                </button>
+
+            </div>
+
+        </div>
+    </header>
+    <main>
+        <!-- Inicio del Formulario de Registro -->
+        <section class="section" id="registro">
+            <div class="container">
+                <br><br>
+                <h2>Formulario de Datos de Alquiler</h2>
+
+                <form action="#" class="registro-form" id="registro-form">
+
+                    <div class="input-wrapper">
+                        <label for="nombre" class="input-label">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" class="input-field"
+                            placeholder="Ingrese su nombre completo" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑüÜ\s]+"
+                            title="Solo se permiten letras"
+                            oninput="this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúñÑüÜ\s]+/, '')" required>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="correo" class="input-label">Correo Electrónico</label>
+                        <input type="email" id="correo" name="correo" class="input-field"
+                            placeholder="Ingrese su correo electrónico" required>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="telefono" class="input-label">Número Telefónico</label>
+                        <input type="tel" id="telefono" name="telefono" class="input-field"
+                            placeholder="Ingrese su número telefónico" inputmode="numeric"
+                            title="Ingrese un número de teléfono válido" maxlength="10" required>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="lugar" class="input-label">¿Dónde lo quieres Recibir?</label>
+                        <select class="input-field">
+                            <option value="matriz">Aeropuerto (Matríz)</option>
+                            <option value="huatulco">Huatulco</option>
+                            <option value="puerto Escondido">Puerto Escondido</option>
+                        </select>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="fecha-inicio" class="input-label">Fecha de Inicio</label>
+                        <input type="date" id="fecha-inicio" name="fecha-inicio" class="input-field" required>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="fecha-fin" class="input-label">Fecha de Fin</label>
+                        <input type="date" id="fecha-fin" name="fecha-fin" class="input-field" required>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="tipo-auto" class="input-label">Tipo de Auto</label>
+                        <select id="tipo-auto" name="tipo-auto" class="input-field" onchange="mostrarOpciones()">
+                            <option value="auto-chico">Auto Chico</option>
+                            <option value="auto-mediano">Auto Mediano</option>
+                            <option value="camioneta">Camioneta</option>
+                            <option value="pick-up">Pick Up</option>
+                        </select>
+                    </div>
+
+                    <div class="input-wrapper" id="marca-auto-wrapper" style="display: none;">
+                        <label for="marca-auto" class="input-label">Marca del Auto</label>
+                        <select id="marca-auto" name="marca-auto" class="input-field">
+                            <!-- Opciones de marca se llenarán dinámicamente con JavaScript -->
+                        </select>
+                    </div>
+
+                    <div class="input-wrapper" id="pasajeros-wrapper" style="display: none;">
+                        <label for="cantidad-pasajeros" class="input-label">Cantidad de Pasajeros</label>
+                        <select id="cantidad-pasajeros" name="cantidad-pasajeros" class="input-field"
+                            onchange="mostrarOpcionesMarcaCamioneta()">
+                            <option value="5">5 personas</option>
+                            <option value="7">7 personas</option>
+                            <option value="12">12 personas</option>
+                        </select>
+                    </div>
+
+                    <div class="input-wrapper" id="marca-camioneta-wrapper" style="display: none;">
+                        <label for="marca-camioneta" class="input-label">Marca de la Camioneta</label>
+                        <select id="marca-camioneta" name="marca-camioneta" class="input-field">
+                            <!-- Opciones de marca de camioneta se llenarán dinámicamente con JavaScript -->
+                        </select>
+                    </div>
+
+                    <div class="input-wrapper" id="resultado"><b></b></div>
+                    <style>
+                        #resultado {
+                            font-family: Arial, sans-serif;
+                            font-size: 18px;
+                            color: #ff7300;
+                            font-weight: bold;
+                            text-align: center;
+                        }
+                    </style>
+
+                    <button type="submit" class="btn">Reservar</button>
+                </form>
+            </div>
+        </section>
+        <!-- Fin del Formulario de Registro -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
+                var fechaActual = obtenerFechaActual();
+
+                // Seleccionar los elementos por su id
+                var fechaInicioInput = document.getElementById("fecha-inicio");
+                var fechaFinInput = document.getElementById("fecha-fin");
+
+                // Asignar la fecha actual como valor mínimo para los campos de fecha
+                fechaInicioInput.setAttribute("min", fechaActual);
+                fechaFinInput.setAttribute("min", fechaActual);
+
+                // Resto del código...
+                // Añadir escuchadores de eventos, mostrarOpciones(), calcularPrecio(), etc.
+            });
+
+            function obtenerFechaActual() {
+                var fecha = new Date();
+                var dd = String(fecha.getDate()).padStart(2, '0');
+                var mm = String(fecha.getMonth() + 1).padStart(2, '0'); // El mes se cuenta desde 0
+                var yyyy = fecha.getFullYear();
+                return yyyy + '-' + mm + '-' + dd;
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Mostrar opciones al cargar la página
+                mostrarOpciones();
+
+                // Seleccionar los elementos por su id
+                var formulario = document.getElementById("registro-form");
+                var tipoAutoSelect = document.getElementById("tipo-auto");
+                var marcaAutoSelect = document.getElementById("marca-auto");
+                var cantidadPasajerosSelect = document.getElementById("cantidad-pasajeros");
+                var fechaInicioInput = document.getElementById("fecha-inicio");
+                var fechaFinInput = document.getElementById("fecha-fin");
+
+                // Añadir escuchadores de eventos para actualizar el precio al cambiar los valores
+                formulario.addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    calcularPrecio();
+                });
+
+                tipoAutoSelect.addEventListener("change", function () {
+                    mostrarOpciones();
+                    calcularPrecio();
+                });
+
+                marcaAutoSelect.addEventListener("change", calcularPrecio);
+
+                cantidadPasajerosSelect.addEventListener("change", function () {
+                    mostrarOpcionesMarcaCamioneta();
+                    calcularPrecio();
+                });
+
+                fechaInicioInput.addEventListener("change", calcularPrecio);
+                fechaFinInput.addEventListener("change", calcularPrecio);
+
+                // Añadir escuchador de eventos para el campo de teléfono
+                var telefono = document.getElementById("telefono");
+                telefono.addEventListener("input", function () {
+                    this.value = this.value.replace(/\D/g, "");
+                    calcularPrecio();
+                });
+            });
+
+            function mostrarOpciones() {
+                var tipoAuto = document.getElementById("tipo-auto").value;
+                var marcaAutoWrapper = document.getElementById("marca-auto-wrapper");
+                var pasajerosWrapper = document.getElementById("pasajeros-wrapper");
+                var marcaCamionetaWrapper = document.getElementById("marca-camioneta-wrapper");
+
+                // Ocultar todos los wrappers al principio
+                marcaAutoWrapper.style.display = "none";
+                pasajerosWrapper.style.display = "none";
+                marcaCamionetaWrapper.style.display = "none";
+
+                // Mostrar opciones según el tipo de auto seleccionado
+                if (tipoAuto === "auto-chico" || tipoAuto === "auto-mediano" || tipoAuto === "pick-up") {
+                    marcaAutoWrapper.style.display = "block";
+                    llenarOpcionesMarca(tipoAuto);
+                } else if (tipoAuto === "camioneta") {
+                    marcaAuto = document.getElementById("marca-camioneta").value;
+                    pasajerosWrapper.style.display = "block";
+                    mostrarOpcionesMarcaCamioneta();
+                    marcaCamionetaWrapper.style.display = "block";
+                }
+            }
+
+            function llenarOpcionesMarca(tipoAuto) {
+                var marcaAutoSelect = document.getElementById("marca-auto");
+                marcaAutoSelect.innerHTML = "";
+
+                // Llenar las opciones de marca según el tipo de auto seleccionado
+                var opciones = {
+                    "auto-chico": ["Nissan March - $1000", "Hyundai Grand i10 - $1200"],
+                    "auto-mediano": ["Chevrolet Aveo Transmisión Estándar - $1200", "Chevrolet Aveo Transmisión Automática - $1400"],
+                    "pick-up": ["Nissan Frontier - $2500"]
+                };
+
+                opciones[tipoAuto].forEach(function (opcion) {
+                    agregarOpcionMarca(opcion);
+                });
+            }
+
+            function mostrarOpcionesMarcaCamioneta() {
+                var cantidadPasajeros = document.getElementById("cantidad-pasajeros").value;
+                var marcaCamionetaWrapper = document.getElementById("marca-camioneta-wrapper");
+                var marcaCamionetaSelect = document.getElementById("marca-camioneta");
+
+                marcaCamionetaSelect.innerHTML = "";
+                marcaCamionetaWrapper.style.display = "block";
+
+                // Llenar las opciones de marca de camioneta según la cantidad de pasajeros seleccionada
+                var opciones = {
+                    "5": ["Volkswagen T-Cross - $1700"],
+                    "7": ["Toyota Avanza - $2000"],
+                    "12": ["Toyota Hiace - $3000"]
+                };
+
+                opciones[cantidadPasajeros].forEach(function (opcion) {
+                    agregarOpcionMarcaCamioneta(opcion);
+                });
+            }
+
+            function agregarOpcionMarca(texto) {
+                var opcion = document.createElement("option");
+                opcion.text = texto;
+                var marcaAutoSelect = document.getElementById("marca-auto");
+                marcaAutoSelect.add(opcion);
+            }
+
+            function agregarOpcionMarcaCamioneta(texto) {
+                var opcion = document.createElement("option");
+                opcion.text = texto;
+                var marcaCamionetaSelect = document.getElementById("marca-camioneta");
+                marcaCamionetaSelect.add(opcion);
+            }
+
+            function calcularPrecio() {
+                var fechaInicio = new Date(document.getElementById("fecha-inicio").value);
+                var fechaFin = new Date(document.getElementById("fecha-fin").value);
+                var tipoAuto = document.getElementById("tipo-auto").value;
+                var marcaAuto = document.getElementById("marca-auto").value;
+                var cantidadPasajeros = document.getElementById("cantidad-pasajeros").value;
+
+
+                var preciosBase = {
+                    "auto-chico": { "Nissan March - $1000": 1000, "Hyundai Grand i10 - $1200": 1200 },
+                    "auto-mediano": { "Chevrolet Aveo Transmisión Estándar - $1200": 1200, "Chevrolet Aveo Transmisión Automática - $1400": 1400 },
+                    "camioneta": { "5": 1700, "7": 2000, "12": 3000 },
+                    "pick-up": { "default": 2500 }
+                };
+
+                //var precioBase = preciosBase[tipoAuto] ? preciosBase[tipoAuto][marcaAuto] || preciosBase[tipoAuto]["default"] : 0; 
+                var precioBase = preciosBase[tipoAuto] ? preciosBase[tipoAuto][marcaAuto] || preciosBase[tipoAuto][cantidadPasajeros] || preciosBase[tipoAuto]["default"] : 0;
+
+
+                var diferenciaDias = Math.ceil((fechaFin - fechaInicio) / (1000 * 60 * 60 * 24));
+                var precioTotal = precioBase * diferenciaDias;
+
+
+                if (fechaInicio.getTime() === fechaFin.getTime()) {
+
+                    console.error("Error: Las fechas de inicio y fin no pueden ser iguales.");
+                    var resultadoElement = document.getElementById("resultado");
+                    resultadoElement.innerHTML = "Recuerda que la duración mínima de alquiler es de un día";
+                } else {
+
+                    if (!isNaN(precioTotal)) {
+                        var precioFormateado = precioTotal.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+                        var resultadoElement = document.getElementById("resultado");
+                        resultadoElement.innerHTML = "El precio total es: " + precioFormateado + " MXN";
+                        console.log("El precio total es: " + precioFormateado);
+                    } else {
+                        console.error("Error: El precio total no es un número válido");
+                    }
+
+                }
+
+            }
+        </script>
+
+        <style>
+            /* Agrega estos estilos a tu archivo style.css o vincúlalos según sea necesario */
+
+            /* Estilos generales */
+            body {
+                font-family: 'Nunito', 'Open Sans', sans-serif;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            /* Estilos del formulario de registro */
+            #registro {
+                text-align: center;
+            }
+
+            .registro-form {
+                max-width: 500px;
+                /* Ajusta el ancho del formulario según tus necesidades */
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .input-wrapper {
+                margin-bottom: 20px;
+                text-align: left;
+                width: 100%;
+            }
+
+            .input-label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .input-field {
+                width: 100%;
+                padding: 15px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                margin-top: 5px;
+                box-sizing: border-box;
+            }
+
+            .btn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 15px 25px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 18px;
+            }
+
+            .btn:hover {
+                background-color: #45a049;
+            }
+
+            /* Estilos adicionales para mejorar la legibilidad y apariencia */
+            h2 {
+                color: #333;
+            }
+
+            /* Puedes agregar más estilos según sea necesario */
+        </style>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-top">
+
+                <div class="footer-brand">
+                    <a href="#" class="logoLetter">
+                        <h4>Platino Oaxaca</h4>
+                    </a>
+
+                    <p class="footer-text">
+                        Dedicados al alquiler de autos, con más de 10 años de experiencia
+                    </p>
+                </div>
+
+                <ul class="footer-list">
+                    <li>
+                        <div class="boton-modal2"><label for="boton-modal2">Nosotros</label></div><br>
+                    </li>
+                    <!-- Nosotros -->
+                    <input type="checkbox" id="boton-modal2">
+                    <div class="container-modal2">
+                        <div class="content-modal2">
+                            <h2>Platino Oaxaca</h2>
+                            <p>Nos centramos en satisfacer las necesidades de movilidad de nuestros clientes con
+                                servicios de alta
+                                calidad, comodidad y seguridad. Nuestro compromiso profesional garantiza una experiencia
+                                de conducción
+                                confiable y satisfactoria en cada viaje.<br> <br>
+                                <b>Ven y conoce Oaxaca con nosotros!</b>
+                            </p>
+                            <div class="btn-cerrar2">
+                                <label for="boton-modal2">Cerrar</label>
+                            </div>
+                        </div>
+                        <label for="boton-modal2" class="cerrar-modal2"></label>
+                    </div>
+                    <!-- Nosotros -->
+                    <li>
+                        <a href="terminos.html" class="footer-link">Términos y Condiciones</a><br>
+                    </li>
+                    <li>
+                        <div class="boton-modal"><label for="boton-modal">Preguntas Frecuentes</label></div>
+                    </li>
+                    <!-- Preguntas Frecuentes -->
+
+                    <input type="checkbox" id="boton-modal">
+                    <div class="container-modal">
+                        <div class="content-modal">
+                            <h2>Preguntas Frecuentes</h2>
+                            <p><b>¿Cuáles son los requisitos?</b><br>
+                                Identificación Oficial (INE)<br>
+                                Licencia para conducir<br>
+                                Tarjeta de crédito<br><br>
+                                <b>¿Puedo dejar el auto en otra ciudad?</b><br>
+                                Siempre que lo indique anticipadamente <br><br>
+                                <b>¿Incluye IVA?</b><br>
+                                Si<br><br>
+                                <b>¿Ofrecen renta con chofer?</b><br>
+                                Sí, tiene costo adicional <br><br>
+                                <b>¿Aceptan todas las tarjetas?</b><br>
+                                Sí, se aceptan todas las tarjetas bancarias.
+                            </p>
+                            <div class="btn-cerrar">
+                                <label for="boton-modal">Cerrar</label>
+                            </div>
+                        </div>
+                        <label for="boton-modal" class="cerrar-modal"></label>
+                    </div>
+                    <!-- Fin Preguntas Frecuentes -->
+                </ul>
+                <ul class="footer-list">
+                    <li>
+                        <a href="https://maps.app.goo.gl/cWcttZCpGDREiDnd9" class="footer-link"
+                            target="_blank">Ubicación (Mapa)</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <ul class="social-list">
+                    <li>
+                        <a href="https://www.facebook.com/platinooaxaca016/?paipv=0&eav=AfZG0ZRfCRHwzVnpcdgDLihtxqm9LR4tF5DE2QRFTRJJpp-LUcCLDjRC9kh6_iX0ksw&_rdr"
+                            class="social-link" target="_blank">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <h5>platino.oaxaca@gmail.com</h5>
+                    </li>
+                </ul>
+
+                <p class="copyright">
+                    &copy; 2024 Platino Oaxaca
+                </p>
+
+            </div>
+
+        </div>
+    </footer>
+</body>
+<!-- 
+    - custom js link
+  -->
+<script src="./assets/js/script.js"></script>
+
+</html>
